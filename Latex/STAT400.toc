@@ -1,0 +1,59 @@
+\babel@toc {english}{}\relax 
+~\hfill \textbf {Page}\par 
+\contentsline {chapter}{\numberline {1}undecided}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Sets, Experiment, and Probability}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Experiment}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Basic Set Theory}{2}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Axioms of Probability}{4}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Probability and Counting}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Counting}{5}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Conditional Probability and Independence}{6}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Conditional Probability}{6}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Independence}{7}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Bayes' Theorem }{9}{section.1.4}%
+\contentsline {chapter}{\numberline {2}undecided}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Random Variables}{13}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Distribution of Random Variables}{15}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Probability Function of Random Variables}{15}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Distribution of Random Variables}{16}{subsection.2.2.2}%
+\contentsline {chapter}{\numberline {3}Discrete Random Variable}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Uniform Discrete Random Variable}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Binomial Distribution}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Hypergeometric Distribution}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Bernoulli Distribution}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Poisson Distribution}{19}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Negative Binomial Distribution}{19}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Geometric Distribution}{20}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Relationships Between Discrete Distributions}{20}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Binomial and Hypergeometric}{20}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Binomial and Poisson}{21}{subsection.3.8.2}%
+\contentsline {chapter}{\numberline {4}Continuous Random Variable}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction}{22}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Uniform Continuous Distribution}{23}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Normal Distribution}{24}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Percentile and Critical Values}{25}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Approximating Bin(n,p) using Normal Distribution}{25}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Gamma Distribution}{25}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Special Cases of Gamma Distribution}{26}{subsection.4.4.1}%
+\contentsline {section}{\numberline {4.5}Lognormal Distribution}{27}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Beta Distribution}{27}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Cauchy Distribution}{28}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Joint Distribution}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Two Discrete Random Variable}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Two Continuous Random Variables}{30}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Independent Random Variables}{30}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Expected Values and Covariances of Joint Distribution}{31}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Correlation Coefficient}{32}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Linear Combination of Random Variables}{32}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Random Sample and Statistics}{34}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Random Sample}{34}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Statistics}{35}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Sampling Distribution and Central Limit Theorem}{36}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Sampling Distribution}{36}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Central Limit Theorem}{37}{subsection.6.3.2}%
+\contentsline {chapter}{\numberline {7}Point Estimation}{40}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction to Point Estimation}{40}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Principle of Unbiased Estimation}{41}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Methods of Point Estimation}{42}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}The Method of Moments}{42}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Maximum Likelihood Estimation}{44}{subsection.7.3.2}%

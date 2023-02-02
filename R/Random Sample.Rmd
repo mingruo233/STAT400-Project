@@ -1,0 +1,146 @@
+---
+title: "Random Samples"
+output: html_notebook
+---
+
+Sample Max
+```{r}
+
+sample_max<- function(sample){
+  return (max(sample))
+}
+```
+
+Sample Min
+```{r}
+sample_min<- function(sample){
+  return (min(sample))
+}
+```
+
+Sample Mean
+```{r}
+sample_mean<- function(sample){
+  return (mean(sample))
+}
+```
+
+Sample Variance
+```{r}
+sample_variance<- function(sample){
+  return (var(sample))
+}
+```
+
+Sample Mean Inverse
+```{r}
+sample_mean_inverse<- function(sample){
+  mean_sample <- mean(sample)
+  if (mean_sample == 0){
+    return(0)
+  }
+  return(1/(mean_sample))
+}
+```
+
+Sample Mean Squared
+```{r}
+sample_mean_squared<- function(sample){
+  mean_sample <- mean(sample)
+  return(mean_sample*mean_sample)
+}
+```
+
+Sample 4th Largest Element
+```{r}
+sample_fourth_largest<- function(sample){
+  fourth_largest <-sort(sample, TRUE)[4]
+  return(fourth_largest)
+}
+```
+
+Normal Distribution($\mu=2,\sigma=4$,) Sample max Graph
+```{r}
+library(ggplot2)
+value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+value[i] = sample_max(sample)
+}
+df <- data.frame(value = value)
+ggplot(data = df,aes(value))+geom_histogram(bins=50)
+```
+Normal Distribution($\mu=2,\sigma=4$,) Sample Min Graph
+```{r}
+library(ggplot2)
+value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+value[i] = sample_min(sample)
+}
+df <- data.frame(value = value)
+ggplot(data = df,aes(value))+geom_histogram(bins=50)
+```
+Normal Distribution($\mu=2,\sigma=4$) 4th largest element Graph
+```{r}
+library(ggplot2)
+value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+value[i] = sample_fourth_largest(sample)
+}
+df <- data.frame(value = value)
+ggplot(data = df,aes(value))+geom_histogram(bins=20)
+```
+Normal Distribution($\mu=2,\sigma=4$,) Sample Mean Graph
+```{r}
+library(ggplot2)
+mean_value <- c()
+n = 10000
+for (i in 1:n){
+  sample <- rnorm(1000, 2, 4)
+mean_value[i] = sample_mean(sample)
+}
+df <- data.frame(meanValue = mean_value)
+ggplot(data = df)+geom_histogram(mapping = aes(x= mean_value,y=after_stat(density)),bins=20, fill = "steelblue")+stat_function(fun = dnorm, args=list(mean = 2, sd = 4/sqrt(1000)))
+```
+
+Normal Distribution($\mu=2,\sigma=4$,) Sample Variance Graph
+```{r}
+variance_value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+variance_value[i] = sample_variance(sample)
+}
+df <- data.frame(variance = variance_value)
+ggplot(data = df,aes(variance_value))+geom_histogram(bins=30)
+```
+
+Normal Distribution($\mu=2,\sigma=4$) Mean Inverse
+```{r}
+library(ggplot2)
+value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+value[i] = sample_mean_inverse(sample)
+}
+df <- data.frame(value = value)
+ggplot(data = df,aes(value))+geom_histogram(bins=20)
+```
+Normal Distribution($\mu=2,\sigma=4$) Mean Squared
+```{r}
+library(ggplot2)
+value <- c()
+n = 10000
+for (i in 1:n){
+sample <- rnorm(1000, 2, 4)
+value[i] = sample_mean_squared(sample)
+}
+df <- data.frame(value = value)
+ggplot(data = df,aes(value))+geom_histogram(bins=20)
+```

@@ -1,0 +1,167 @@
+---
+title: "R Manual"
+output: html_notebook
+---
+### Variable Assignment 
+
+#### Variables
+```{r}
+x <- 2
+y <- 3
+z <- TRUE
+x
+y
+z
+```
+
+#### Vector
+```{r}
+x <- c(1, 2, 3, 4, 5)
+x
+y <- c(0:3)
+y
+```
+
+#### Sequence
+```{r}
+seq1 <- seq(1, 10)
+seq2 <- seq(1, 10, by = 2)
+seq3 <- seq(1, 10, by = 0.5)
+seq1
+seq2
+seq3
+```
+
+
+### Loops And Conditional Statements
+
+#### Loops
+```{r}
+x = 0
+while (x!= 5){
+  print(x)
+  x = x + 1
+}
+print("While loop end")
+
+```
+```{r}
+x <- c(2,5,3,9,8)
+count <- 0
+for (val in x) {
+  print(val)
+}
+print("For Loop End")
+```
+#### If-Else
+```{r}
+x <- -5
+if(x > 0){
+  print("Non-negative number")
+} else {
+  print("Negative number")
+}
+```
+### Functions
+
+#### Build-in Functions
+```{r}
+x <- seq(0, 10)
+squared <- x**2
+cubed <- x**3
+square_root <- x**(1/2)
+sinx <- sin(x)
+squared
+cubed 
+square_root
+sinx
+```
+
+#### Self-Defined Functions
+##### Step function
+```{r}
+# Function that takes a x valuewill return y value. 
+#If 0<=x<=5 return 3, if 5<x<=6 return 5.5, if 6<x<10 
+#return 7.5 Otherwise return 0  
+step_fun <- function(x){
+  result <- 0
+  if (0<=x & x<=5){
+    result <- 3
+  }
+  if (5<x& x<=6){
+    result <-5.5
+  }
+  if (6<x&x<10){
+    result <- 7.5
+  }
+  return(result)
+}
+x <- seq(1, 10)
+step <- sapply(x,step_fun)
+step
+```
+##### Functions as parts
+```{r}
+#Functions that takes a value x
+# return x^2 if x<0. else x**(1/2)
+part_func <- function(x){
+  if (x<0){
+    return(x**2)
+  }
+  if (x>=0){
+    return(x**(1/2))
+  }
+}
+x <- c(-5: 5)
+part <- sapply(x,part_func)
+part
+```
+##### Functions calculate the sum of first n numbers in a vector(sequence)
+```{r}
+nSum <- function(x,n){
+  i = 1
+  sum = 0
+  for (val in x){
+    if (i<=n){
+      sum = sum + val
+      i = i + 1
+    }
+  }
+  return(sum)
+}
+x <- seq(1, 10)
+result <- nSum(x,5)
+result
+```
+
+### Plot Funcions Using ggplot
+#### Create Dataframe
+```{r}
+x<-seq(-5,5, by= .1)
+y <- sapply(x,part_func)
+df = data.frame(x=x,y=y)
+df
+```
+#### ggplot
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot(df,aes(x=x,y=y))+geom_line()
+```
+##### Plot multiple graphs in one graphs with different colors 
+```{r}
+y2 = x**4
+df2 = data.frame(x=x,y=y,y2=y2)
+ggplot(df2,aes(x=x,y=y))+geom_line(color="red")+geom_line(y=y2,color="blue")
+```
+#### Function that outputs a plot
+```{r}
+# Functions that takes x and y vectors with same length
+# and return a graph.
+plot_func<- function(x,y){
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color="red")
+}
+plot_func(x,y2)
+```
+

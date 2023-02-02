@@ -1,0 +1,197 @@
+---
+title: "Experiment and Relative Frequency"
+output: html_notebook
+---
+#### Experiment
+##### Coin Toss (fair)
+```{r}
+library(ggplot2)
+coin <- c('heads','tails')
+coin_toss <- function(){
+return(sample(x=coin,size = 1,replace = FALSE, prob = c(0.5,0.5)))
+}
+table(replicate(10000,coin_toss()))
+
+```
+
+##### Relative Frequency (target is head/tail)
+```{r}
+coin_target<- function(target){
+  result<- replicate(1,coin_toss())
+  return(sum(result == target))
+}
+coin_toss_frequency <- function(target){
+  x <- 1:10000
+  y <- c()
+  coin_exp<- replicate(10000,coin_target(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+coin_toss_frequency("heads")
+coin_toss_frequency("tails")
+```
+
+##### 5 Coin Toss Count Number of Heads
+```{r}
+coin_head <- function(){
+result <- sample(x=coin,size = 5,replace = TRUE, prob = c(0.5,0.5))
+return(sum(result=="heads"))
+}
+table(replicate(10000,coin_head()))
+```
+##### Relative Frequency (Target is the number you want to track)
+```{r}
+count_head_target<- function(target){
+  result<- coin_head()
+  return(sum(result == target))
+}
+count_head_frequency <- function(target){
+  x <- 1:20000
+  y <- c()
+  coin_exp<- replicate(20000,count_head_target(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+count_head_frequency(0)
+count_head_frequency(3)
+```
+
+##### 5 Coin tosses, check if 3rd toss is a H
+```{r}
+coin_3_H <- function(){
+  result <- sample(x=coin,size = 5,replace = TRUE, prob = c(0.5,0.5))
+  if (result[2]== "heads"){
+    return(FALSE)
+  }else{
+    return(TRUE)
+  }
+}
+table(replicate(10000,coin_3_H()))
+```
+##### Relative Frequency(Target is eithr TRUE or FALSE)
+```{r}
+check_3_target<- function(target){
+  result<- coin_3_H()
+  return(sum(result == target))
+}
+check_3_frequency <- function(target){
+  x <- 1:20000
+  y <- c()
+  coin_exp<- replicate(20000,check_3_target(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+check_3_frequency(TRUE)
+check_3_frequency(FALSE)
+```
+
+##### Toss coin until two heads
+```{r}
+until_two_heads <- function(){
+  result <- sample(x=coin,size = 1,replace = TRUE, prob = c(0.5,0.5))
+  while(sum(result=="heads")!= 2){
+    result = append(result, sample(x=coin,size = 1,replace = TRUE, prob = c(0.5,0.5)))
+  }
+  return(length(result))
+}
+table(replicate(10000,until_two_heads()))
+```
+##### Relative Frequency (Target is any positive number greater or equal to 2)
+```{r}
+how_many_two_heads<- function(target){
+  result<- until_two_heads()
+  return(sum(result == target))
+}
+how_many_frequency <- function(target){
+  x_max <- (20000 * target/2)
+  x <- 1:x_max
+  y <- c()
+  coin_exp<- replicate(x_max,how_many_two_heads(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+how_many_frequency(2)
+how_many_frequency(4)
+```
+
+##### Toss coin followed by a fair dice
+```{r}
+coin_fair <- function(){
+  coin <- sample(x=coin,size = 1,replace = TRUE, prob = c(0.5,0.5))
+  dice <- sample(x=c(1,2,3,4,5,6), size =1, replace = TRUE, prob = c(1/6,1/6,1/6,1/6,1/6,1/6))
+  result <- append(coin,dice)
+  return(result)
+}
+table(replicate(10000,coin_fair()))
+
+```
+##### Relative Frequency Of Numbers of Dice(Target is 1 to 6 )
+```{r}
+fair_target<- function(target){
+  result<- coin_fair()
+  return(sum(result== target))
+}
+fair_frequency <- function(target){
+  x <- 1:20000
+  y <- c()
+  coin_exp<- replicate(20000,fair_target(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+fair_frequency(1)
+fair_frequency(5)
+```
+##### Toss coin, if head roll fair dice, else roll unfiar coin (0.5 for a 6, rest 0.1 )
+```{r}
+coin_unfair <- function(){
+  coin_result <- sample(x=coin,size = 1,replace = TRUE, prob = c(0.5,0.5))
+  dice <- 0
+  if (sum(coin_result=="heads")!= 1){
+    dice <- sample(x=c(1,2,3,4,5,6), size =1, replace = TRUE, prob = c(0.1,0.1,0.1,0.1,0.1,0.5))
+  }else{
+    dice <- sample(x=c(1,2,3,4,5,6), size =1, replace = TRUE, prob = c(1/6,1/6,1/6,1/6,1/6,1/6))
+  }
+  return(append(coin_result, dice))
+}
+table(replicate(10000,coin_unfair()))
+```
+##### Relative Frequency Of Numbers of Dice(Target is 1 to 6 )
+```{r}
+unfair_target<- function(target){
+  result<- coin_unfair()
+  return(sum(result== target))
+}
+unfair_frequency <- function(target){
+  x <- 1:20000
+  y <- c()
+  coin_exp<- replicate(20000,unfair_target(target))
+  for(k in x){
+    y <- c(y,mean(coin_exp[1:k]))
+  }
+  frame <- data.frame("Number of Trials" =x,"Probability"=y)
+ggplot(data = frame, aes(x=x,y=y))+geom_line(color="dark blue")+ ggtitle(target) +
+  xlab("Number of Trials") + ylab("Probability")
+}
+fair_frequency(2)
+fair_frequency(6)
+```

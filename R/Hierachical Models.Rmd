@@ -1,0 +1,24 @@
+---
+title: "Hierachical Models"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+binom_pois <- function(lambda,p) {
+  return(rbinom(1,rpois(1,lambda),p))
+}
+empirical <- replicate(10000,binom_pois(5,0.8))
+df <- data.frame(value = empirical)
+ggplot(data = df,aes(value))+geom_histogram(bins=60)
+```
+
+```{r}
+theoretical <- rpois(10000,4)
+df2 <- data.frame(value = theoretical)
+ggplot() + 
+  geom_histogram(data = df, aes(value,fill = "darkred"),bins=50) + geom_histogram(data = df2, aes(value,fill = "blue"),bins=70)+ scale_fill_manual(labels = c("theoretical","empirical"), values = c("blue", "darkred"))
+```
+```{r}
+qqplot(empirical,theoretical)
+```

@@ -1,0 +1,249 @@
+---
+title: "Discrete Distribution and Continuous Distribution"
+output: html_notebook
+---
+
+
+### Discrete Distribution
+#### Discrete Unifom Distribution PDF
+```{r}
+library(ggplot2)
+ddu<-function(x,k) ifelse(x>=1 & x<=k & round(x)==x,1/k,0) 
+dis_uniform_pdf <- function(k){
+  x<-c(0:k)
+  y<-sapply(x,ddu,k=k)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+dis_uniform_pdf(5)
+```
+##### Discrete Unifom Distribution CDF
+
+```{r}
+pdu<-function(x,k) ifelse(x<1,0,ifelse(x<=k,floor(x)/k,1))
+dis_uniform_pdf <- function(k){
+  x<-c(0:k)
+  y<-sapply(x,pdu,k=k)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+dis_uniform_pdf(5)
+```
+
+#### Binomial PDF
+```{r}
+plot_binom_pdf <- function(n,p){
+  x <- c(0:n)
+  binomial <- dbinom(x,n,p)
+  df = data.frame(x=x,y=binomial)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_binom_pdf(40,0.05)
+```
+##### Binomial CDF
+```{r}
+plot_binom_cdf <- function(n,p){
+  x <- c(0:n)
+  binomial <- pbinom(x,n,p)
+  df = data.frame(x=x,y=binomial)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_binom_cdf(40,0.05)
+```
+
+#### Bernoulli PDF
+```{r}
+plot_bio_pdf <- function(p){
+  plot_binom_pdf(1,p)
+}
+plot_bio_pdf(0.2)
+```
+##### Bernoulli CDF
+```{r}
+plot_bio_pdf <- function(p){
+  plot_binom_cdf(1,p)
+}
+plot_bio_pdf(0.2)
+```
+
+#### HyperGeometric PDF
+```{r}
+plot_hyper_pdf <- function(N,M,n){
+  x <- c(0:N)
+  hyper <- dhyper(x,N,M,n)
+  df = data.frame(x=x,y=hyper)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_hyper_pdf(20,30,10)
+```
+##### HyperGeometric CDF
+```{r}
+plot_hyper_cdf <- function(N,M,n){
+  x <- c(0:N)
+  hyper <- phyper(x,N,M,n)
+  df = data.frame(x=x,y=hyper)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_hyper_cdf(10,30,10)
+```
+
+##### Poisson pdf
+```{r}
+plot_poi_pdf <- function(N,lambda){
+  x <- c(0:N)
+  poi <- dpois(x,lambda)
+  df = data.frame(x=x,y=poi)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_poi_pdf(40,3)
+```
+
+##### Poisson cdf
+```{r}
+plot_poi_cdf <- function(N,lambda){
+  x <- c(0:N)
+  poi <- ppois(x,lambda)
+  df = data.frame(x=x,y=poi)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_poi_cdf(20,3)
+```
+#### Negative Binomial pdf
+```{r}
+plot_negBin_pdf <- function(N,r,p){
+  x <- c(0:N)
+  y <- dnbinom(x,r,p)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_negBin_pdf(100, 10,0.3)
+```
+##### Negative Binomial cdf
+```{r}
+plot_negBin_cdf <- function(N,r,p){
+  x <- c(0:N)
+  y <- pnbinom(x,r,p)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_col(fill="darkblue")
+}
+plot_negBin_cdf(50, 10,0.3)
+```
+
+
+
+### Continuous Distribution
+#### Continuous Uniform Distribution PDF
+```{r}
+dis_uniform_pdf <- function(start,end){
+  x<-seq(start-1,end+1,by = 0.001)
+  y<-dunif(x,start,end)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+dis_uniform_pdf(5,6)
+```
+##### Continuous Uniform Distribution CDF
+```{r}
+dis_uniform_pdf <- function(start,end){
+  x<-seq(start-1,end+1,by = 0.001)
+  y<-punif(x,start,end)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+dis_uniform_pdf(5,6)
+```
+
+#### Normal Distribution PDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_norm_pdf <- function(x0,x1,m,v){
+  x<-seq(x0,x1,by = 0.001)
+  y<-dnorm(x,m,v)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_norm_pdf(0,15,5,2)
+```
+
+##### Normal Distribution CDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_norm_cdf <- function(x0,x1,m,v){
+  x<-seq(x0,x1,by = 0.001)
+  y<-pnorm(x,m,v)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_norm_cdf(0,15,5,2)
+```
+#### Gamma Distribution PDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_gamma_pdf <- function(x0,x1,a,b){
+  x<-seq(x0,x1,by = 0.001)
+  y<-dgamma(x,a,b)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_gamma_pdf (0,15,5,2)
+```
+
+##### Gamma Distribution CDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_gamma_cdf <- function(x0,x1,a,b){
+  x<-seq(x0,x1,by = 0.001)
+  y<-pgamma(x,a,b)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_gamma_cdf (-1,15,5,2)
+```
+
+#### Exponential Distribution PDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_exp_pdf <- function(x0,x1,a){
+  x<-seq(x0,x1,by = 0.001)
+  y<-dexp(x,a)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_exp_pdf (0,5,3)
+```
+#### Exponential Distribution CDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_exp_cdf <- function(x0,x1,a){
+  x<-seq(x0,x1,by = 0.001)
+  y<-pexp(x,a)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_exp_cdf (0,5,3)
+```
+
+#### Beta Distribution PDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_beta_pdf <- function(x0,x1,a,b){
+  x<-seq(x0,x1,by = 0.001)
+  y<-dbeta(x,a,b)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_beta_pdf (0,5,3,5)
+```
+
+#### Beta Distribution CDF
+```{r}
+# x0 is start of the interval and x1 is end of the interval
+plot_beta_pdf <- function(x0,x1,a,b){
+  x<-seq(x0,x1,by = 0.001)
+  y<-pbeta(x,a,b)
+  df = data.frame(x=x,y=y)
+  ggplot(df,aes(x=x,y=y))+geom_line(color = "darkred")
+}
+plot_beta_pdf (0,2,3,5)
+```
+
